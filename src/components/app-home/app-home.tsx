@@ -90,7 +90,10 @@ export class AppHome {
           handler: () => {
             console.log('Share clicked');
 
-            if ((navigator as any).share) {
+            if ((window as any).Windows) {
+              this.windowsShare("check this out", `${text}\n`);
+            }
+            else if ((navigator as any).share) {
               (navigator as any).share({
                 title: 'Check this out: ',
                 text: `${text}\n`
@@ -105,7 +108,7 @@ export class AppHome {
             if ((navigator as any).clipboard) {
               try {
                 await (navigator as any).clipboard.writeText(`${text}\n`);
-                
+
                 const toast = await this.toastCtrl.create({
                   message: 'Text copied to clipboard',
                   duration: 1300
@@ -130,6 +133,29 @@ export class AppHome {
     });
 
     await actionSheet.present();
+  }
+
+  async windowsShare(title, text) {
+    const DataTransferManager = (window as any).Windows.ApplicationModel.DataTransfer.DataTransferManager;
+
+      const dataTransferManager = DataTransferManager.getForCurrentView();
+      console.log('dataTransferManager', dataTransferManager);
+
+      dataTransferManager.addEventListener("datarequested", (ev: any) => {
+        const data = ev.request.data;
+        console.log(data.properties);
+
+        data.properties.title = title;
+        ev.request.data.setText(text);
+        data.setUri(new (window as any).Windows.Foundation.Uri(window.location));
+      });
+
+      try {
+        DataTransferManager.showShareUI();
+      }
+      catch (err) {
+        console.log('error', err);
+      }
   }
 
   render() {
