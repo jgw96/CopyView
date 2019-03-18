@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>CopyView</title>
+
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="Ever wish you could copy text in real life like you can on your phone? CopyView lets you do just that!">
+  <meta name="theme-color" content="#E74856">
+
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CopyView">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta http-equiv="x-ua-compatible" content="IE=Edge">
+
+  <link href="/build/app.css" rel="stylesheet">
+  <script src="/build/app.js"></script>
+
+  <link rel="apple-touch-icon" href="/assets/icon/icon.png">
+  <link rel="icon" type="image/x-icon" href="/assets/icon/favicon.ico">
+  <link rel="manifest" href="/manifest.json">
+</head>
+
+<body>
+
+  <app-root></app-root>
+
+  <script>
+    if (!window.ImageCapture) {
+      const blobScript = document.createElement('script');
+      blobScript.src='/assets/toBlob.js';
+      document.body.appendChild(blobScript);
+
+      const newScript = document.createElement('script');
+      newScript.src='/assets/captureAPI.js';
+      document.body.appendChild(newScript);
+
+      const copyScript = document.createElement('script');
+      copyScript.src='/assets/copy.js';
+      document.body.appendChild(copyScript);
+    }
+  </script>
+
+</body>
+
+</html>

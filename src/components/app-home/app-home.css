@@ -1,0 +1,29 @@
+video {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+#flashButton {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  font-size: 1.2em;
+}
+
+#localFileButton {
+  position: fixed;
+  font-size: 1.2em;
+  bottom: 16px;
+  left: 16px;
+}
+
+.action-sheet-title {
+  margin-bottom: 2em;
+}
